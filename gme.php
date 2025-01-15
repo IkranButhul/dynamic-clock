@@ -1,12 +1,28 @@
-<?php
-// Display a welcome message
-echo "Welcome to the Game!";
+<!DOCTYPE html>
+<html>
 
-// Define a simple function to start the game
-function startGame()
-{
-    echo "\nThe game has started!";
-}
+<head>
+    <title>Dynamic Clock</title>
+    <script type="text/javascript">
+        function updateClock() {
+            var now = new Date();
+            var hours = now.getHours();
+            var minutes = now.getMinutes();
+            var seconds = now.getSeconds();
+            var ampm = hours >= 12 ? 'PM' : 'AM';
+            hours = hours % 12;
+            hours = hours ? hours : 12; // the hour '0' should be '12'
+            minutes = minutes < 10 ? '0' + minutes : minutes;
+            seconds = seconds < 10 ? '0' + seconds : seconds;
+            var strTime = hours + ':' + minutes + ':' + seconds + ' ' + ampm;
+            document.getElementById('clock').innerHTML = strTime;
+        }
+        setInterval(updateClock, 1000);
+    </script>
+</head>
 
-// Call the function to start the game
-startGame();
+<body onload="updateClock()">
+    <div id="clock"></div>
+</body>
+
+</html>
